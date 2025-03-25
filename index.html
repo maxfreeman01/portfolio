@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Max Freeman - Portfolio</title>
+    <style>
+     :root {
+    --primary-color: #4D4D80;
+    --secondary-color: #2c3e50;
+    --accent-color: #e74c3c;
+    --background-color: #f8f9fa;
+    --text-color: #333;
+    --light-gray: #e9ecef;
+    --medium-gray: #adb5bd;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header */
+    header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: var(--secondary-color);
+    }
+
+    .logo span {
+        color: var(--primary-color);
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: var(--secondary-color);
+        font-weight: 500;
+        transition: color 0.3s;
+        position: relative;
+    }
+
+    .nav-links a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Skills Dropdown */
+    .projects-dropdown {
+        position: relative;
+        cursor: pointer;
+    }
+
+    .projects-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 250px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        z-index: 1;
+        top: 100%;
+        left: 0;
+        border-radius: 5px;
+        padding: 10px 0;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 0.3s, transform 0.3s, visibility 0.3s;
+    }
+
+    .projects-dropdown:hover .projects-dropdown-content {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .projects-dropdown-content a {
+        color: var(--secondary-color);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        transition: background-color 0.3s;
+    }
+
+    .projects-dropdown-content a:hover {
+        background-color: var(--light-gray);
+        color: var(--primary-color);
+    }
+
+    /* Hero Section */
+    .hero {
+        display: flex;
+        align-items: center;
+        gap: 50px;
+        padding: 50px 0 40px 0;
+    }
+
+    .hero-image {
+        flex: 1;
+        text-align: center;
+    }
+
+    .hero-image img {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid white;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-content {
+        flex: 2;
+    }
+
+    h1 {
+        font-size: 42px;
+        margin-bottom: 10px;
+        color: var(--secondary-color);
+    }
+
+    .subtitle {
+        font-size: 20px;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+
+    .hero-content p {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+
+    .name-resume-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+
+    .resume-button {
+        white-space: nowrap;
+        margin-left: 20px;
+    }
+
+    .cta-buttons {
+        display: none;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+    }
+
+    .btn-primary {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background-color: white;
+        color: var(--primary-color);
+        border: 2px solid var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+    }
+
+    hr {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    /* Contact Info */
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 70px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        justify-content: left;
+        width: 100%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 100vw;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .contact-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px;
+    }
+
+    .contact-icon svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .contact-icon svg path {
+        fill: white;
+        stroke: white;
+        stroke-width: 0.5;
+    }
+
+    .contact-item a {
+        color: var(--secondary-color);
+        text-decoration: none;
+        transition: color 0.3s;
+        font-weight: 500;
+    }
+
+    .contact-item a:hover {
+        color: var(--primary-color);
+    }
+
+    /* Skills Section */
+    .skills {
+        padding: 40px 0;
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .skills h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--secondary-color);
+    }
+
+    .skills-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .skill-tag {
+        background-color: var(--light-gray);
+        color: var(--secondary-color);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+
+    /* Projects Section */
+    .projects {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+        color: var(--secondary-color);
+        position: relative;
+    }
+
+    .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background-color: var(--primary-color);
+    }
+
+    .project-card {
+        background-color: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        margin-bottom: 50px;
+        transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .project-images {
+        display: flex;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .project-image {
+        flex: 1;
+        height: 200px;
+        object-fit: contain;
+        background-color: var(--light-gray);
+    }
+
+    .project-content {
+        padding: 25px;
+    }
+
+    .project-content i {
+        font-weight: 100;
+    }
+
+    .project-title {
+        font-size: 24px;
+        margin-bottom: 10px;
+        color: var(--secondary-color);
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .project-tag {
+        background-color: var(--light-gray);
+        color: var(--secondary-color);
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .category-project {
+        background-color: rgba(82, 72, 156, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 500;
+        position: relative;
+        bottom: 2px;
+        margin-left: 30px;
+    }
+
+    .project-description ul {
+        padding-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .project-description h4 {
+        margin-top: 20px;
+        margin-bottom: 15px;
+    }
+
+    .project-description li {
+        margin-bottom: 8px;
+    }
+
+    .project-link {
+        font-style: italic;
+    }
+
+    .project-link a {
+        color: var(--primary-color);
+        font-weight: bold;
+    }
+
+
+    .project-link a:hover {
+        color: #1C699C;
+    }
+
+    /* Footer */
+    footer {
+        background-color: #1a252f;
+        color: white;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 14px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .hero {
+            flex-direction: column;
+            text-align: center;
+            padding: 40px 0;
+        }
+        
+        .hero-image img {
+            width: 200px;
+            height: 200px;
+        }
+        
+        .project-image {
+            height: 150px;
+        }
+        
+        .contact-info {
+            justify-content: left;
+        }
+        
+        .name-resume-container {
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .resume-button {
+            margin-left: 0;
+        }
+    }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Max Freeman</div>
+                <div class="nav-links">
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <div class="projects-dropdown">
+                        <a href="#projects">Projects</a>
+                        <div class="projects-dropdown-content">
+                            <a href="#project-multimodal">Multimodal Autonomous Platform</a>
+                            <a href="#project-mpc">MPC Path-tracking Project</a>
+                            <a href="#project-semi-autonomous">Semi-Autonomous Robot</a>
+                            <a href="#project-lit-motors">Lit Motors Internship</a>
+                            <a href="#project-magnus">Magnus eVTOL Quadcopter</a>
+                            <a href="#project-drone-dynamics">Drone Dynamics & Control</a>
+                            <a href="#project-cislunar">Cislunar Explorers CubeSat</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section with About Me -->
+    <section class="hero" id="about">
+        <div class="container">
+            <div class="hero">
+                <div class="hero-image">
+                    <img src="Headshot.jpg" alt="Max Freeman">
+                </div>
+                <div class="hero-content">
+                    <div class="name-resume-container">
+                        <h1>Max Freeman</h1>
+                        <a target="_blank" rel="noopener noreferrer" href="Max Freeman Resume.pdf" class="btn btn-primary resume-button">Download Resume (PDF)</a>
+                    </div>
+                    <div class="subtitle">Mechanical Engineering MEng Student @ UC Berkeley</div>
+                    <p><strong>Hi, I'm Max!</strong> I'm a Master of Engineering student at UC Berkeley, specializing in Controls & Robotics within the Mechanical Engineering department. Before that, I completed my undergraduate degree in Mechanical Engineering from Cornell University.</p>
+                    <p>I'm passionate about building innovative products that create real-world impact - not just developing technology, but solving meaningful problems in the process. I really enjoy working in fast-paced, dynamic environments, and tackling novel technologies.</p>
+                    <p>I have 2+ years of hands-on experience designing, integrating, and testing complex electromechanical systems, spanning mechanical design, mechatronics, sensor fusion, controls, and systems integration. Beyond my technical background, I am also skilled in project management, serving as the Project Lead for two complex electromechanical projects, leading teams of 4-5 cross-disciplinary engineers.</p>
+                    <p>I am currently seeking full-time roles in robotics, systems integration, controls, mechanical design, and technical project management. Always happy to connect - let’s chat!</p>
+                    
+                    <hr></hr>
+                    
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </div>
+                            <a href="mailto:max_freeman@berkeley.com">max_freeman@berkeley.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                                </svg>
+                            </div>
+                            <a href="tel:+16073277804">(607)-327-7804</a>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                                </svg>
+                            </div>
+                            <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/maxfreeman">LinkedIn Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Skills Section -->
+    <section class="skills" id = "skills">
+        <div class="container">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <div class="skill-tag">Mechatronics</div>
+                <div class="skill-tag">Systems Integration</div>
+                <div class="skill-tag">Root Cause Analysis</div>
+                <div class="skill-tag">Mechanical Design</div>
+                <div class="skill-tag">Rapid Prototyping</div>
+                <div class="skill-tag">3D Printing</div>
+            </div>
+            <div class="skills-container">
+                <div class="skill-tag">Model Predictive Control</div>
+                <div class="skill-tag">PID Control</div>
+                <div class="skill-tag">Sensor Fusion</div>
+                <div class="skill-tag">State Estimation (KF/EKF)</div>
+                <div class="skill-tag">ROS</div>
+                <div class="skill-tag">Embedded Systems</div>
+            </div>
+            <div class="skills-container">
+                <div class="skill-tag">Python</div>
+                <div class="skill-tag">C++</div>
+                <div class="skill-tag">MATLAB</div>
+            </div>
+            <div class="skills-container">
+                <div class="skill-tag">Simulink</div>
+                <div class="skill-tag">SolidWorks</div>
+                <div class="skill-tag">Fusion 360</div>
+                <div class="skill-tag">Pyomo</div>
+            </div>
+            <div class="skills-container">
+                <div class="skill-tag">Agile Development</div>
+                <div class="skill-tag">Project Management</div>
+                <div class="skill-tag">Cross-Functional Collaboration</div>
+                <div class="skill-tag">Stakeholder Engagement</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">Featured Projects & Professional Experience</h2>
+            
+            <!-- Project 1 -->
+            <div class="project-card" id="project-multimodal">
+                <div class="project-images">
+                    <img class="project-image" src="Capstone_Prototype.png" alt="Ground vehicle with components labelled">
+                    <img class="project-image" src="Capstone_Fly.png" alt="CAD render of system in flight mode">
+                    <img class="project-image" src="Capstone_Drive.png" alt="CAD render of system in driving mode">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Multimodal Autonomous Platform Design, <i>Project Lead</i></h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Robotics</span>
+                        <span class="project-tag">Systems Integration & Testing</span>
+                        <span class="project-tag">Model Predictive Control</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">ROS</span>
+                        <span class="project-tag">Autonomous Systems</span>
+                        <span class="project-tag">3D Printing</span>
+                        <span class="project-tag">Project Management</span>
+                        <span class="project-tag">CAN Bus Communication</span>
+                    </div>
+                    <div class="project-description">
+                        <h4>Project Description</h4>
+                        <p>This is my MEng Capstone Project. It focuses on designing and testing a durable multimodal robot that can transition between flying and driving modes. The goal is to create a versatile, manufacturable design using 3D printing.</p>
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Coordinate the development of mechanical design, flight control, and autonomous driving subsystems, ensuring compatibility and timely project completion.</li>
+                            <li>Lead trade studies around system architecture, defining key performance metrics and driving informed decision-making.</li>
+                            <li>Integrate power supplies, actuators, and sensors with an NVIDIA Jetson, ensuring compatibility across components and enabling communication via ROS for real-time control.</li>
+                            <li>Manage the selection and validation of motor-propeller combinations for the quadcopter, identifying and implementing cost-effective testing methods to validate the performance of selected components.</li>
+                            <li>Author detailed documentation for testing procedures, outlining execution steps, safety risks, and risk mitigation strategies to ensure system reliability and proactively identify potential problems.</li>
+                            <li>Develop and implement a custom MPC controller and physics-based simulator for the ground vehicle, enabling real-time path tracking and obstacle avoidance.</li>
+                            <li>Conduct system identification tests on a BLDC motor, improving model accuracy for precise control.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 2 -->
+            <div class="project-card" id="project-mpc">
+                <div class="project-images">
+                    <img class="project-image" src="MPC_1.png" alt="Two-wheel differential drive system diagram">
+                    <img class="project-image" src="MPC_2.png" alt="General program structure">
+                    <img class="project-image" src="MPC_3.png" alt="Controller performance test">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">MPC Path-tracking & Obstacle Avoidance for Mobile Robot</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Control Systems</span>
+                        <span class="project-tag">Model Predictive Control</span>
+                        <span class="project-tag">Robotics</span>
+                        <span class="project-tag">Simulation</span>
+                        <span class="project-tag">Dynamics</span>
+                        <span class="project-tag">Linearisation</span>
+                    </div>
+                    <div class="project-description">
+                        <h4>Project Description</h4>
+                        <p>This project involved designing and implementing a custom MPC controller for a two-wheeled differential drive robot. The controller integrates path tracking and obstacle avoidance, accounting for real-world limitations such as actuator saturation and environmental noise.</p>
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Developed a hybrid control strategy by generating a reference trajectory offline using nonlinear MPC, then transitioning to a linearized MPC model during runtime to enhance computational efficiency.</li>
+                            <li>Applied Zero-Order Hold for linear system discretization and Forward Euler for nonlinear system discretization.</li>
+                            <li>Simulated control strategies in Python, validating performance under noise, model mismatch, and nonlinear dynamics.</li>
+                        </ul>
+                        <p class="project-link">For more information, please read the final project report <a target="_blank" rel="noopener noreferrer" href="ME231A Final Project Report.pdf">here</a>.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 3 -->
+            <div class="project-card" id="project-semi-autonomous">
+                <div class="project-images">
+                    <img class="project-image" src="FastRobo_1.png" alt="Labelled image of the semi-autonomous robot system">
+                    <img class="project-image" src="FastRobo_2.png" alt="Distance from wall vs. time graph">
+                    <img class="project-image" src="FastRobo_3.png" alt="Pitch vs. time data from IMU">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Semi-Autonomous Robot Development</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">C++</span>
+                        <span class="project-tag">Python</span>
+                        <span class="project-tag">Sensor Fusion</span>
+                        <span class="project-tag">PID Control</span>
+                        <span class="project-tag">Soldering</span>
+                        <span class="project-tag">Arduino Programming</span>
+                        <span class="project-tag">I2C Protocol</span>
+                        <span class="project-tag">System Integration</span>
+                        <span class="project-tag">Mechatronics</span>
+                    </div>
+                    <div class="project-description">
+                        <h4>Project Description</h4>
+                        <p>For this project, I designed and built a dynamic autonomous robot using a toy RC car platform. I completely revamped the original system by replacing key components, including motor drivers, sensors, and an Arduino Nano, and then developed software in C++ and Python to enable precise autonomous control.</p>
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Soldered and integrated electrical components, carefully reviewing datasheets to ensure proper component compatibility, safe voltage levels, and effective integration with the overall system.</li>
+                            <li>Worked with Time-of-Flight and IMU sensors using the I2C protocol, applying sensor fusion techniques and software-based filtering in C++ to improve system performance. Characterized motor vibrations through FFT spectrum analysis to design a low-pass filter, reducing IMU noise by over 50% and enhancing reliability.</li>
+                            <li>Implemented and tuned a PID motor controller in C++ for optimal response, achieving rapid settling with minimal overshoot and steady-state error.</li>
+                            <li>Debugged hardware-software interactions, ensuring reliable sensor data flow and minimizing latency.</li>
+                        </ul>
+                        <p class="project-link">For more information, please view the project portfolio website <a target="_blank" rel="noopener noreferrer" href="https://mzf8.github.io/mae4190/">here</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            
+            <!-- Project 4 -->
+            <div class="project-card" id="project-lit-motors">
+                <div class="project-images">
+                    <img class="project-image" src="LitMotor_1.png" alt="Render of the final vehicle design">
+                    <img class="project-image" src="LitMotor_2.png" alt="Image of the assembled dual-plane dynamic balancing rig">
+                    <img class="project-image" src="LitMotor_3.png" alt="CAD renders of low-fidelity iterations">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Lit Motors, <i>Mechanical Design Intern</i></h3>
+                    <div class="project-tags">
+                        <span class="project-tag">SolidWorks</span>
+                        <span class="project-tag">Systems Engineering</span>
+                        <span class="project-tag">Mechanical Design</span>
+                        <span class="project-tag">Prototype Development</span>
+                        <span class="project-tag">Electric Vehicles</span>
+                        <span class="project-tag">Automotive Engineering</span>
+                    </div>
+                    <div class="project-description">
+                        <h4>Project Description</h4>
+                        <p>Lit Motors is a fast-paced automotive startup focused on developing a novel two-wheeled electric vehicle that employs counter-rotating Control Moment Gyroscopes (CMGs) for self-balancing. During my internship, I played a key role in the design and optimization of critical vehicle components to enhance performance and manufacturability.</p>
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Authored technical documentation consolidating system requirements, streamlining communication, and enhancing engineering efficiency. </li>
+                            <li>Designed a dual-plane dynamic balancing rig in SolidWorks for CMG balancing, selecting and sourcing T-Slot Aluminum Extrusions to enhance structural rigidity. The platform led to reduced vibrations and improved CMG stability during tests.</li>
+                            <li>Iterated on designs for the vehicle steering system and CMG base-ring in SolidWorks, improving chassis integration and reducing manufacturing complexity.</li>
+                            <li>Delivered technical presentations to diverse audiences, including the Oregon State Governor's Office and potential investors, tailoring content to align with their specific interests and technical backgrounds.</li>
+                            <li>Communicated with vendors for part procurement, ensuring proper component selection, and securing quotes to guarantee on-time and on-budget delivery.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 5 -->
+            <div class="project-card" id="project-magnus">
+                <div class="project-images">
+                    <img class="project-image" src="Magnus_1.png" alt="Labelled image of the Magnus eVTOL system">
+                    <img class="project-image" src="Magnus_2.png" alt="Assembled system with propellers removed">
+                    <img class="project-image" src="Magnus_3.png" alt="Spreadsheet model of drone parameters">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Magnus Ultralight eVTOL Quadcopter, <i>Lead Engineer</i></h3>
+                    <div class="project-tags">
+                        <span class="project-tag">Lead Engineer</span>
+                        <span class="project-tag">eVTOL</span>
+                        <span class="project-tag">MATLAB</span>
+                        <span class="project-tag">Project Management</span>
+                        <span class="project-tag">Aerodynamics</span>
+                        <span class="project-tag">Flight Testing</span>
+                        <span class="project-tag">Root Cause Analysis</span>
+                    </div>
+                    <div class="project-description">
+                        <h4>Project Description</h4>
+                        <p>The Magnus Ultralight project aimed to design, assemble, and test an experimental eVTOL quadcopter that utilizes the Magnus Effect, incorporating a spinning cylindrical cockpit to enhance lift, reduce power consumption, and extend flight range.</li>
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Managed a team of three engineers in the development of a small-scale prototype, creating detailed project roadmaps and overseeing a $2,000 budget. Reprioritized tasks to address supply chain delays, ensuring the project stayed on schedule and within budget.</li>
+                            <li>Designed and optimized a cylindrical rotating cockpit for the prototype using MATLAB, achieving a 20% increase in lift-to-weight ratio while ensuring flight stability and handling requirements were maintained.</li>
+                            <li>Conducted post-flight root-cause analysis, testing sensor functionality and communication to diagnose system faults. Identified failure points and implemented corrective actions to improve flight reliability.</li>
+                            <li>Created a comprehensive spreadsheet to track design parameters and model their impact on key performance metrics such as range and endurance, enabling data-driven decision-making.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 6 -->
+            <div class="project-card" id="project-drone-dynamics">
+                <div class="project-images">
+                    <img class="project-image" src="Drone_1.png" alt="Quadcopter mounted on a thrust testing rig">
+                    <img class="project-image" src="Drone_2.png" alt="Force vs rotational speed graph">
+                    <img class="project-image" src="Drone_3.png" alt="Quadcopter mounted on a pitch testing rig">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Dynamics and Control of Autonomous Flight Project</h3>
+                    <div class="project-tags">
+                        <span class="project-tag">C++</span>
+                        <span class="project-tag">Flight Control</span>
+                        <span class="project-tag">3D Dynamics</span>
+                        <span class="project-tag">PID Tuning</span>
+                        <span class="project-tag">Sensor Fusion</span>
+                        <span class="project-tag">Mechatronic Debugging</span>
+                    </div>
+                    <div class="project-description">
+                        <h4>Project Description</h4>
+                        <p>This project involved the design, implementation, and testing of a flight controller for a drone on the CrazyFlie 2.0 quadacopter platform.</li>
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Developed a flight controller in C++, enabling horizontal and vertical translation as well as full attitude control.</li>
+                            <li>Characterized the system and motors by conducting motor tests and creating curve fits for speed-to-force and PWM-to-speed relationships, enabling precise motor output control.</li>
+                            <li>Implemented sensor fusion models, utilizing data from optical flow, IMU, and Time-of-Flight sensors to improve sensor data accuracy and provide precise feedback for control.</li>
+                            <li>Diagnosed and corrected stability issues through targeted subsystem testing, sensor debugging, and controller tuning to validate fixes and improve system response.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Project 7 -->
+            <div class="project-card" id="project-cislunar">
+                <div class="project-images">
+                    <img class="project-image" src="Cislunar_1.png" alt="Detailed CAD of original 6U CubeSat design">
+                    <img class="project-image" src="Cislunar_2.png" alt="Rough CAD of new 12U CubeSat system">
+                    <img class="project-image" src="Cislunar_3.png" alt="Ansys steady-state thermal analysis">
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Cislunar Explorers CubeSat, <i>Integration & Testing Engineer</i></h3>
+                    <div class="project-tags">
+                        <span class="project-tag">SolidWorks</span>
+                        <span class="project-tag">Integration & Testing</span>
+                        <span class="project-tag">Ansys</span>
+                        <span class="project-tag">Thermal Analysis</span>
+                        <span class="project-tag">System Requirements</span>
+                    </div>
+                    <div class="project-description">
+                        <h4>Project Description</h4>
+                        <p>The Cislunar Explorers research project aimed to test two novel technologies on a 12U CubeSat: water electrolysis propulsion and optical navigation. As a member of the Integration & Testing team, my role was to ensure build reliability and subsystem compatibility.</li>
+                        <h4>Key Responsibilities</h4>
+                        <ul>
+                            <li>Designed satellite configurations in SolidWorks to facilitate integration between subsystems while balancing stringent mass and volume specifications, ensuring system requirements were met.</li>
+                            <li>Led the development of a trade study evaluating different CubeSat architectures, enabling the selection of a 12U design that streamlined manufacturing, lowered costs, and improved system reliability.</li>
+                            <li>Coordinated cross-functional communication between subsystem teams to understand design requirements, negotiate compromises, and ensure alignment that met the technical needs of all subsystems.</li>
+                            <li>Conducted steady-state thermal analysis using Ansys to develop propellant heating requirements.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Max Freeman. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+    // Add smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                window.scrollTo({
+                    top: target.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Add scroll effect for header
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+        }
+    });
+</script>
+</body>
+</html>
