@@ -288,18 +288,30 @@
         display: flex;
         flex-wrap: wrap;
         gap: 15px;
-        justify-content: center;
+        justify-content: left;
         margin-top: 20px;
     }
 
     .skill-tag {
-        background-color: var(--light-gray);
+        background-color: rgb(77, 77, 128, 0.2);
         color: var(--secondary-color);
         padding: 8px 16px;
         border-radius: 20px;
         font-size: 14px;
         font-weight: 500;
         transition: all 0.3s;
+    }
+
+    .category-tag {
+        color: var(--secondary-color);
+        padding: 8px 16px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s;
+        font-weight: bold;
+
+
     }
 
     /* Projects Section */
@@ -373,7 +385,7 @@
     }
 
     .project-tag {
-        background-color: var(--light-gray);
+        background-color: rgb(77, 77, 128, 0.2);
         color: var(--secondary-color);
         padding: 5px 10px;
         border-radius: 5px;
@@ -502,7 +514,7 @@
                         <a target="_blank" rel="noopener noreferrer" href="Max Freeman Resume.pdf" class="btn btn-primary resume-button">Download Resume (PDF)</a>
                     </div>
                     <div class="subtitle">Mechanical Engineering MEng Student at UC Berkeley</div>
-                    <p><strong>Hi, I'm Max!</strong> I'm a Master of Engineering student at UC Berkeley, specializing in Controls & Robotics within the Mechanical Engineering department. Before that, I completed my undergraduate degree in Mechanical Engineering from Cornell University.</p>
+                    <p><strong>Hi, I'm Max!</strong> I am a Master of Engineering student at UC Berkeley, specializing in Controls & Robotics within the Mechanical Engineering department. Before that, I completed my undergraduate degree in Mechanical Engineering from Cornell University.</p>
                     <p>I'm passionate about building innovative products that create real-world impact - not just developing technology, but solving meaningful problems in the process. I really enjoy working in fast-paced, dynamic environments, and tackling novel technologies.</p>
                     <p>I have 2+ years of hands-on experience designing, integrating, and testing complex electromechanical systems, spanning mechanical design, mechatronics, sensor fusion, controls, and systems integration. Beyond my technical background, I am also skilled in project management, serving as the Project Lead for two complex electromechanical projects, leading teams of 4-5 cross-disciplinary engineers.</p>
                     <p>I am currently seeking full-time roles in robotics, systems integration, controls, mechanical design, and technical project management. Always happy to connect - let’s chat!</p>
@@ -545,6 +557,7 @@
         <div class="container">
             <h2 class="section-title">Skills</h2>
             <div class="skills-container">
+                <div class="category-tag">Hardware: </div>
                 <div class="skill-tag">Mechatronics</div>
                 <div class="skill-tag">Systems Integration</div>
                 <div class="skill-tag">Root Cause Analysis</div>
@@ -553,6 +566,7 @@
                 <div class="skill-tag">3D Printing</div>
             </div>
             <div class="skills-container">
+                <div class="category-tag">Robotics: </div>
                 <div class="skill-tag">Model Predictive Control</div>
                 <div class="skill-tag">PID Control</div>
                 <div class="skill-tag">Sensor Fusion</div>
@@ -561,17 +575,20 @@
                 <div class="skill-tag">Embedded Systems</div>
             </div>
             <div class="skills-container">
+                <div class="category-tag">Programming Languages: </div>
                 <div class="skill-tag">Python</div>
                 <div class="skill-tag">C++</div>
                 <div class="skill-tag">MATLAB</div>
             </div>
             <div class="skills-container">
+                <div class="category-tag">Software & Tools: </div>
                 <div class="skill-tag">Simulink</div>
                 <div class="skill-tag">SolidWorks</div>
                 <div class="skill-tag">Fusion 360</div>
                 <div class="skill-tag">Pyomo</div>
             </div>
             <div class="skills-container">
+                <div class="category-tag">Leadership: </div>
                 <div class="skill-tag">Agile Development</div>
                 <div class="skill-tag">Project Management</div>
                 <div class="skill-tag">Cross-Functional Collaboration</div>
