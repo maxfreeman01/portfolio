@@ -352,13 +352,19 @@
     }
 
     .project-images {
-        display: flex;
-        gap: 10px;
-        padding: 10px;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scroll-behavior: smooth; /* Smooth scrolling */
+    padding-bottom: 15px; /* Add extra padding for the scrollbar */
     }
 
+    /* Make project images maintain their size */
     .project-image {
-        flex: 1;
+        flex: 0 0 auto; /* Don't allow images to shrink */
+        min-width: 250px; /* Set a minimum width */
         height: 200px;
         object-fit: contain;
         background-color: var(--light-gray);
@@ -457,7 +463,8 @@
         }
         
         .project-image {
-            height: 150px;
+        min-width: 200px; /* Slightly smaller on mobile */
+        height: 150px;
         }
         
         .contact-info {
