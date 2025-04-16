@@ -353,23 +353,23 @@
 
     .project-images {
     display: flex;
-    gap: 10px;
     padding: 10px;
     overflow-x: auto; /* Enables horizontal scrolling */
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     scroll-behavior: smooth; /* Smooth scrolling */
     padding-bottom: 15px; /* Add extra padding for the scrollbar */
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     }
 
     /* Make project images maintain their size */
     .project-image {
         flex: 0 0 auto; /* Don't allow images to shrink */
-        min-width: 250px; /* Set a minimum width */
+        min-width: 300px; /* Set a minimum width */
         height: 220px;
         object-fit: contain;
         background-color: var(--light-gray);
+        cursor: zoom-in;
     }
 
     .project-content {
@@ -438,6 +438,47 @@
     }
 
 
+    #zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.7);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  cursor: zoom-out;
+}
+
+#zoom-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+#zoom-overlay.show {
+  display: flex;
+}
+
+#zoom-overlay.show img {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.project-image:hover {
+  transform: scale(1.03);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+
+
+
     .project-link a:hover {
         color: #1C699C;
     }
@@ -502,11 +543,11 @@
                         <a href="#projects">Projects</a>
                         <div class="projects-dropdown-content">
                             <a href="#project-multimodal">Multimodal Autonomous Platform</a>
-                            <a href="#project-mpc">MPC Path-tracking Project</a>
                             <a href="#project-semi-autonomous">Semi-Autonomous Robot</a>
+                            <a href="#project-drone-dynamics">Drone Dynamics & Control</a>
+                            <a href="#project-mpc">MPC Path-tracking Project</a>
                             <a href="#project-lit-motors">Lit Motors Internship</a>
                             <a href="#project-magnus">Magnus eVTOL Quadcopter</a>
-                            <a href="#project-drone-dynamics">Drone Dynamics & Control</a>
                             <a href="#project-cislunar">Cislunar Explorers CubeSat</a>
                         </div>
                     </div>
@@ -530,7 +571,7 @@
                     <div class="subtitle">Mechanical Engineering MEng Student at UC Berkeley</div>
                     <p><strong>Hi, I'm Max!</strong> I am a Master of Engineering student at UC Berkeley, specializing in Controls & Robotics within the Mechanical Engineering department. Before that, I completed my undergraduate degree in Mechanical Engineering from Cornell University.</p>
                     <p>I'm passionate about building innovative products that create real-world impact - not just developing technology, but solving meaningful problems in the process. I really enjoy working in fast-paced, dynamic environments, and tackling novel technologies.</p>
-                    <p>I have 2+ years of hands-on experience designing, integrating, and testing complex electromechanical systems, spanning mechanical design, mechatronics, sensor fusion, controls, and systems integration. Beyond my technical background, I am also skilled in project management, serving as the Project Lead for two complex electromechanical projects, leading teams of 4-5 cross-disciplinary engineers.</p>
+                    <p>I have 2+ years of hands-on experience designing, integrating, and testing complex electromechanical systems, spanning mechanical design, mechatronics, sensor fusion, controls, and systems integration. Beyond my technical background, I am also skilled in project management, serving as the Project Lead for two research projects, leading teams of 4-5 cross-disciplinary engineers.</p>
                     <p>I am currently seeking full-time roles in robotics, systems integration, controls, mechanical design, and technical project management. Always happy to connect - let’s chat!</p>
                     
                     <hr></hr>
@@ -542,7 +583,7 @@
                                     <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                                 </svg>
                             </div>
-                            <a href="mailto:max_freeman@berkeley.com">max_freeman@berkeley.com</a>
+                            <a href="mailto:max_freeman@berkeley.com">max_freeman@berkeley.edu</a>
                         </div>
                         <div class="contact-item">
                             <div class="contact-icon">
@@ -587,7 +628,6 @@
                 <div class="skill-tag">State Estimation (KF/EKF)</div>
                 <div class="skill-tag">ROS2</div>
                 <div class="skill-tag">CAN Bus & I2C Communication</div>
-                <div class="skill-tag">Embedded Systems</div>
             </div>
             <div class="skills-container">
                 <div class="category-tag">Programming Languages: </div>
@@ -600,7 +640,7 @@
                 <div class="skill-tag">Simulink</div>
                 <div class="skill-tag">SolidWorks</div>
                 <div class="skill-tag">Fusion 360</div>
-                <div class="skill-tag">Pyomo</div>
+                <div class="skill-tag">Git</div>
             </div>
             <div class="skills-container">
                 <div class="category-tag">Leadership: </div>
@@ -631,7 +671,8 @@
                         <span class="project-tag">Systems Integration & Testing</span>
                         <span class="project-tag">Model Predictive Control</span>
                         <span class="project-tag">Python</span>
-                        <span class="project-tag">ROS</span>
+                        <span class="project-tag">Simulation</span>
+                        <span class="project-tag">ROS2</span>
                         <span class="project-tag">Autonomous Systems</span>
                         <span class="project-tag">3D Printing</span>
                         <span class="project-tag">Project Management</span>
@@ -639,14 +680,14 @@
                     </div>
                     <div class="project-description">
                         <h4>Project Description</h4>
-                        <p>This is my MEng Capstone Project. It focuses on designing and testing a durable multimodal robot that can transition between flying and driving modes. The goal is to create a versatile, manufacturable design using 3D printing.</p>
+                        <p>This MEng Capstone project focused on developing a single drivetrain multimodal robot capable of switching between driving and flying modes. The goal was to create a cost-effective and durable platform using 3D-printed components. I led hardware integration across mechanical and electrical systems, and spearheaded the development of MPC-based autonomous driving and ROS2-based communication infrastructure. Beyond the technical scope, I managed development schedules, facilitated cross-functional collaboration, and aligned the team around a shared system-level vision.</p>
                         <h4>Key Responsibilities</h4>
                         <ul>
                             <li>Coordinate the development of mechanical design, flight control, and autonomous driving subsystems, ensuring compatibility and timely project completion.</li>
                             <li>Lead trade studies around system architecture, defining key performance metrics and driving informed decision-making.</li>
                             <li>Integrate power supplies, actuators, and sensors with an NVIDIA Jetson, ensuring compatibility across components.</li>
                             <li>Configure and deploy ROS2 nodes for real-time sensor processing and control execution over CAN Bus.</li>
-                            <li>Design and implement real-time control algorithms for autonomous trajectory tracking and obstacle avoidance using MPC, achieving robust performance under dynamic vehicle conditions and ensuring stability.</li>
+                            <li>Design and implement real-time control algorithms for autonomous trajectory tracking and obstacle avoidance using MPC, achieving robust performance under dynamic vehicle conditions.</li>
                             <li>Build a physics-based Python simulator to test controllers before deployment, reducing integration time.</li>
                             <li>Conduct software-in-the-loop and hardware-in-the-loop testing to validate system reliability, identify failure points early, and refine control strategies, mitigating downstream development risks.</li>
                             <li>Conduct system identification tests on a BLDC motor, improving model accuracy for precise control.</li>
@@ -655,37 +696,6 @@
                 </div>
             </div>
             
-            <!-- Project 2 -->
-            <div class="project-card" id="project-mpc">
-                <div class="project-images">
-                    <img class="project-image" src="MPC_1.png" alt="Two-wheel differential drive system diagram">
-                    <img class="project-image" src="MPC_2.png" alt="General program structure">
-                    <img class="project-image" src="MPC_3.png" alt="Controller performance test">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">MPC Path-tracking & Obstacle Avoidance for Mobile Robot</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">Python</span>
-                        <span class="project-tag">Control Systems</span>
-                        <span class="project-tag">Model Predictive Control</span>
-                        <span class="project-tag">Robotics</span>
-                        <span class="project-tag">Simulation</span>
-                        <span class="project-tag">Dynamics</span>
-                        <span class="project-tag">Linearisation</span>
-                    </div>
-                    <div class="project-description">
-                        <h4>Project Description</h4>
-                        <p>This project involved designing and implementing a custom MPC controller for a two-wheeled differential drive robot. The controller integrates path tracking and obstacle avoidance, accounting for real-world limitations such as actuator saturation and environmental noise.</p>
-                        <h4>Key Responsibilities</h4>
-                        <ul>
-                            <li>Developed a hybrid control strategy by generating a reference trajectory offline using nonlinear MPC, then transitioning to a linearized MPC model during runtime to enhance computational efficiency.</li>
-                            <li>Applied Zero-Order Hold for linear system discretization and Forward Euler for nonlinear system discretization.</li>
-                            <li>Simulated control strategies in Python, validating performance under noise, model mismatch, and nonlinear dynamics.</li>
-                        </ul>
-                        <p class="project-link">For more information, please read the final project report <a target="_blank" rel="noopener noreferrer" href="ME231A Final Project Report.pdf">here</a>.</p>
-                    </div>
-                </div>
-            </div>
             
             <!-- Project 3 -->
             <div class="project-card" id="project-semi-autonomous">
@@ -709,7 +719,7 @@
                     </div>
                     <div class="project-description">
                         <h4>Project Description</h4>
-                        <p>For this project, I designed and built a dynamic autonomous robot using a RC car platform. I completely revamped the original system by replacing key components, including motor drivers, sensors, and an Arduino Nano, and then developed software in C++ and Python to enable precise real-time autonomous control.</p>
+                        <p>In this project, I overhauled an RC car platform to create a dynamic semi-autonomous robot. The objective was to enable reliable real-time control through hardware redesign and embedded software development. I replaced key electrical components, integrated ToF and IMU sensors, and programmed low-level control algorithms in C++ and Python to achieve responsive autonomous behavior.</p>
                         <h4>Key Responsibilities</h4>
                         <ul>
                             <li>Soldered and integrated electrical components, carefully reviewing datasheets to ensure proper component compatibility, safe voltage levels, and effective integration with the overall system.</li>
@@ -721,6 +731,72 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Project 6 -->
+            <div class="project-card" id="project-drone-dynamics">
+            <div class="project-images">
+                <img class="project-image" src="Drone_1.png" alt="Quadcopter mounted on a thrust testing rig">
+                <img class="project-image" src="Drone_2.png" alt="Force vs rotational speed graph">
+                <img class="project-image" src="Drone_3.png" alt="Quadcopter mounted on a pitch testing rig">
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Dynamics and Control of Autonomous Flight Project</h3>
+                <div class="project-tags">
+                    <span class="project-tag">C++</span>
+                    <span class="project-tag">Flight Control</span>
+                    <span class="project-tag">Quadcopters</span>
+                    <span class="project-tag">3D Dynamics</span>
+                    <span class="project-tag">PID Tuning</span>
+                    <span class="project-tag">Sensor Fusion</span>
+                    <span class="project-tag">Mechatronic Debugging</span>
+                </div>
+                <div class="project-description">
+                    <h4>Project Description</h4>
+                    <p>This class project centered on developing a robust flight controller for the CrazyFlie 2.0 quadcopter. The objective was to achieve stable, full-attitude control through accurate modeling and sensor integration. I implemented control algorithms in C++, performed motor characterization, and fused data from optical flow, IMU, and ToF sensors for closed-loop feedback.</p>
+                    <h4>Key Responsibilities</h4>
+                    <ul>
+                        <li>Developed a flight controller in C++, enabling horizontal and vertical translation as well as full attitude control.</li>
+                        <li>Characterized the system and motors by conducting motor tests and creating curve fits for speed-to-force and PWM-to-speed relationships, enabling precise motor output control.</li>
+                        <li>Implemented sensor fusion models, utilizing data from optical flow, IMU, and Time-of-Flight sensors to improve sensor data accuracy and provide precise feedback for control.</li>
+                        <li>Diagnosed and corrected stability issues through targeted subsystem testing, sensor debugging, and controller tuning to validate fixes and improve system response.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+         <!-- Project 2 -->
+         <div class="project-card" id="project-mpc">
+            <div class="project-images">
+                <img class="project-image" src="MPC_1.png" alt="Two-wheel differential drive system diagram">
+                <img class="project-image" src="MPC_2.png" alt="General program structure">
+                <img class="project-image" src="MPC_3.png" alt="Controller performance test">
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">MPC Path-tracking & Obstacle Avoidance for Mobile Robot</h3>
+                <div class="project-tags">
+                    <span class="project-tag">Python</span>
+                    <span class="project-tag">Control Systems</span>
+                    <span class="project-tag">Model Predictive Control</span>
+                    <span class="project-tag">Robotics</span>
+                    <span class="project-tag">Simulation</span>
+                    <span class="project-tag">Dynamics</span>
+                    <span class="project-tag">Linearisation</span>
+                    <span class="project-tag">Trajectory Planning</span>
+                    <span class="project-tag">Optimization</span>
+                </div>
+                <div class="project-description">
+                    <h4>Project Description</h4>
+                    <p>This project involved building a custom Model Predictive Control (MPC) framework for a two-wheeled differential drive robot. The controller was designed to track a predefined path while avoiding obstacles, accounting for system dynamics and real-world constraints. I developed both nonlinear and linearized control strategies and validated them through Python-based simulations.</p>
+                    <h4>Key Responsibilities</h4>
+                    <ul>
+                        <li>Developed a hybrid control strategy by generating a reference trajectory offline using nonlinear MPC, then transitioning to a linearized MPC model during runtime to enhance computational efficiency.</li>
+                        <li>Applied Zero-Order Hold for linear system discretization and Forward Euler for nonlinear system discretization.</li>
+                        <li>Simulated control strategies in Python, validating performance under noise, model mismatch, and nonlinear dynamics.</li>
+                    </ul>
+                    <p class="project-link">For more information, please read the final project report <a target="_blank" rel="noopener noreferrer" href="ME231A Final Project Report.pdf">here</a>.</p>
+                </div>
+            </div>
+        </div>
 
             
             <!-- Project 4 -->
@@ -742,7 +818,7 @@
                     </div>
                     <div class="project-description">
                         <h4>Project Description</h4>
-                        <p>Lit Motors is a fast-paced automotive startup focused on developing a novel two-wheeled electric vehicle that employs counter-rotating Control Moment Gyroscopes (CMGs) for self-balancing. During my internship, I played a key role in the design and optimization of critical vehicle components to enhance performance and manufacturability.</p>
+                        <p>Lit Motors is a fast-paced startup developing a two-wheeled electric vehicle stabilized by Control Moment Gyroscopes (CMGs). The goal was to enhance mechanical reliability and manufacturability of the system. As a Mechanical Design Intern, I contributed to core hardware development by designing CMG dynamic balancing rigs, refining chassis components in SolidWorks, and supporting technical documentation and communication across teams.</p>
                         <h4>Key Responsibilities</h4>
                         <ul>
                             <li>Authored technical documentation consolidating system requirements, streamlining communication, and enhancing engineering efficiency. </li>
@@ -766,7 +842,7 @@
                     <h3 class="project-title">Magnus Ultralight eVTOL Quadcopter, <i>Lead Engineer</i></h3>
                     <div class="project-tags">
                         <span class="project-tag">Lead Engineer</span>
-                        <span class="project-tag">eVTOL</span>
+                        <span class="project-tag">Quadcopters</span>
                         <span class="project-tag">MATLAB</span>
                         <span class="project-tag">Project Management</span>
                         <span class="project-tag">Aerodynamics</span>
@@ -775,44 +851,13 @@
                     </div>
                     <div class="project-description">
                         <h4>Project Description</h4>
-                        <p>The Magnus Ultralight project aimed to design, assemble, and test an experimental eVTOL quadcopter that utilizes the Magnus Effect, incorporating a spinning cylindrical cockpit to enhance lift, reduce power consumption, and extend flight range.</li>
+                        <p>This research project aimed to design and test an experimental eVTOL drone that leveraged the Magnus Effect to generate additional lift. The goal was to extend flight range by integrating a rotating cylindrical cockpit. As Lead Engineer, I oversaw project coordination, aerodynamics modeling, hardware prototyping, and root-cause analysis of flight performance issues.</p>
                         <h4>Key Responsibilities</h4>
                         <ul>
                             <li>Managed a team of three engineers in the development of a small-scale prototype, creating detailed project roadmaps and overseeing a $2,000 budget. Reprioritized tasks to address supply chain delays, ensuring the project stayed on schedule and within budget.</li>
                             <li>Designed and optimized a cylindrical rotating cockpit for the prototype using MATLAB, achieving a 20% increase in lift-to-weight ratio while ensuring flight stability and handling requirements were maintained.</li>
                             <li>Conducted post-flight root-cause analysis, testing sensor functionality and communication to diagnose system faults. Identified failure points and implemented corrective actions to improve flight reliability.</li>
                             <li>Created a comprehensive spreadsheet to track design parameters and model their impact on key performance metrics such as range and endurance, enabling data-driven decision-making.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project 6 -->
-            <div class="project-card" id="project-drone-dynamics">
-                <div class="project-images">
-                    <img class="project-image" src="Drone_1.png" alt="Quadcopter mounted on a thrust testing rig">
-                    <img class="project-image" src="Drone_2.png" alt="Force vs rotational speed graph">
-                    <img class="project-image" src="Drone_3.png" alt="Quadcopter mounted on a pitch testing rig">
-                </div>
-                <div class="project-content">
-                    <h3 class="project-title">Dynamics and Control of Autonomous Flight Project</h3>
-                    <div class="project-tags">
-                        <span class="project-tag">C++</span>
-                        <span class="project-tag">Flight Control</span>
-                        <span class="project-tag">3D Dynamics</span>
-                        <span class="project-tag">PID Tuning</span>
-                        <span class="project-tag">Sensor Fusion</span>
-                        <span class="project-tag">Mechatronic Debugging</span>
-                    </div>
-                    <div class="project-description">
-                        <h4>Project Description</h4>
-                        <p>This project involved the design, implementation, and testing of a flight controller for a drone on the CrazyFlie 2.0 quadacopter platform.</li>
-                        <h4>Key Responsibilities</h4>
-                        <ul>
-                            <li>Developed a flight controller in C++, enabling horizontal and vertical translation as well as full attitude control.</li>
-                            <li>Characterized the system and motors by conducting motor tests and creating curve fits for speed-to-force and PWM-to-speed relationships, enabling precise motor output control.</li>
-                            <li>Implemented sensor fusion models, utilizing data from optical flow, IMU, and Time-of-Flight sensors to improve sensor data accuracy and provide precise feedback for control.</li>
-                            <li>Diagnosed and corrected stability issues through targeted subsystem testing, sensor debugging, and controller tuning to validate fixes and improve system response.</li>
                         </ul>
                     </div>
                 </div>
@@ -836,7 +881,7 @@
                     </div>
                     <div class="project-description">
                         <h4>Project Description</h4>
-                        <p>The Cislunar Explorers research project aimed to test two novel technologies on a 12U CubeSat: water electrolysis propulsion and optical navigation. As a member of the Integration & Testing team, my role was to ensure build reliability and subsystem compatibility.</li>
+                        <p>The Cislunar Explorers project aimed to demonstrate optical navigation and water electrolysis propulsion on a 12U CubeSat. As an Integration & Testing Engineer, I focused on ensuring subsystem compatibility and mechanical viability. My work included CAD-based configuration design, trade studies on satellite architectures, and cross-team collaboration to define and align system-level requirements.</p>
                         <h4>Key Responsibilities</h4>
                         <ul>
                             <li>Designed satellite configurations in SolidWorks to facilitate integration between subsystems while balancing stringent mass and volume specifications, ensuring system requirements were met.</li>
@@ -849,6 +894,10 @@
             </div>
         </div>
     </section>
+    <div id="zoom-overlay">
+        <img id="zoomed-img" src="" alt="Zoomed Image">
+    </div>
+      
 
     <!-- Footer -->
     <footer>
@@ -882,6 +931,22 @@
             header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
         }
     });
+
+    const zoomOverlay = document.getElementById('zoom-overlay');
+    const zoomedImg = document.getElementById('zoomed-img');
+
+    document.querySelectorAll('.project-image').forEach(img => {
+    img.addEventListener('click', () => {
+        zoomedImg.src = img.src;
+        zoomOverlay.classList.add('show');
+    });
+    });
+
+    zoomOverlay.addEventListener('click', () => {
+    zoomOverlay.classList.remove('show');
+    });
+
+
 </script>
 </body>
 </html>
