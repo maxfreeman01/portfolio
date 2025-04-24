@@ -675,7 +675,7 @@
                     <img class="project-image" src="Capstone_Drive.png" alt="CAD render of system in driving mode">
                 </div>
                 <div class="project-content">
-                    <h3 class="project-title">Multimodal Autonomous Platform Design, <i>Project Lead</i></h3>
+                    <h3 class="project-title">Multimodal Autonomous Platform Design, <i>Lead Robotics Engineer</i></h3>
                     <div class="project-tags">
                         <span class="project-tag">Robotics</span>
                         <span class="project-tag">Systems Integration & Testing</span>
@@ -693,14 +693,16 @@
                         <p>This MEng Capstone project focused on developing a single drivetrain multimodal robot capable of switching between driving and flying modes. The goal was to create a cost-effective and durable platform using 3D-printed components. I led hardware integration across mechanical and electrical systems, and spearheaded the development of MPC-based autonomous driving and ROS2-based communication infrastructure. Beyond the technical scope, I managed development schedules, facilitated cross-functional collaboration, and aligned the team around a shared system-level vision.</p>
                         <h4>Key Responsibilities</h4>
                         <ul>
-                            <li>Coordinate the development of mechanical design, flight control, and autonomous driving subsystems, ensuring compatibility and timely project completion.</li>
-                            <li>Lead trade studies around system architecture, defining key performance metrics and driving informed decision-making.</li>
-                            <li>Integrate power supplies, actuators, and sensors with an NVIDIA Jetson, ensuring compatibility across components.</li>
-                            <li>Configure and deploy ROS2 nodes for real-time sensor processing and control execution over CAN Bus.</li>
-                            <li>Design and implement real-time control algorithms for autonomous trajectory tracking and obstacle avoidance using MPC, achieving robust performance under dynamic vehicle conditions.</li>
-                            <li>Build a physics-based Python simulator to test controllers before deployment, reducing integration time.</li>
-                            <li>Conduct software-in-the-loop and hardware-in-the-loop testing to validate system reliability, identify failure points early, and refine control strategies, mitigating downstream development risks.</li>
-                            <li>Conduct system identification tests on a BLDC motor, improving model accuracy for precise control.</li>
+                            <li>Lead coordination of mechanical, flight control, and autonomous driving subsystems, ensuring cross-domain integration and on-time delivery.</li>
+                            <li>Drive trade studies on system architecture, defining key performance metrics and evaluating design architectures.</li>
+                            <li>Integrate power, actuation, and sensing hardware with an NVIDIA Jetson, ensuring electrical compatibility and streamlined system communication.</li>
+                            <li>Design and deploy a ROS2-based flight controller for aerial mode, using motion capture feedback to validate hover stability across 10+ tethered test flights.</li>
+                            <li>Compare onboard IMU data to motion capture feedback to guide sensor selection, reducing noise sensitivity and improving tracking accuracy during flight.</li>
+                            <li>Configure ROS2 nodes for real-time control and sensor streaming over CAN Bus, enabling synchronized operation of four actuators and perception systems.</li>
+                            <li>Implement and tune real-time MPC in Python for trajectory tracking and obstacle avoidance, achieving under 5cm lateral error in final position during hardware testing.</li>
+                            <li>Develop a Python-based physics simulator to validate controllers pre-deployment, accelerating iteration and reducing time spent on physical test cycles.</li>
+                            <li>Run SITL and HITL tests to verify system reliability, identify control faults early, and refine strategies under real-time conditions.</li>
+                            <li>Perform system identification on a BLDC motor to improve model accuracy, supporting precise control during trajectory execution.</li>
                         </ul>
                     </div>
                 </div>
@@ -733,7 +735,8 @@
                         <h4>Key Responsibilities</h4>
                         <ul>
                             <li>Soldered and integrated electrical components, carefully reviewing datasheets to ensure proper component compatibility, safe voltage levels, and effective integration with the overall system.</li>
-                            <li>Worked with Time-of-Flight and IMU sensors using the I2C protocol, applying sensor fusion techniques and software-based filtering in C++ to improve system performance. Characterized motor vibrations through FFT spectrum analysis to design a low-pass filter, reducing IMU noise by over 50% and enhancing reliability.</li>
+                            <li>Worked with Time-of-Flight and IMU sensors using the I2C protocol, applying sensor fusion techniques and software-based filtering in C++ to improve system performance.</li> 
+                            <li>Characterized motor vibrations through FFT spectrum analysis to design a low-pass filter, reducing IMU noise by over 50% and enhancing reliability.</li>
                             <li>Implemented and tuned a PID motor controller in C++ for optimal response, achieving rapid settling with minimal overshoot and steady-state error.</li>
                             <li>Diagnosed hardware issues with an oscilloscope and resolved control and sensing faults by analyzing telemetry and sensor data, improving reliability and reducing latency.</li>
                         </ul>
@@ -765,7 +768,7 @@
                     <p>This class project centered on developing a robust flight controller for the CrazyFlie 2.0 quadcopter. The objective was to achieve stable, full-attitude control through accurate modeling and sensor integration. I implemented control algorithms in C++, performed motor characterization, and fused data from optical flow, IMU, and ToF sensors for closed-loop feedback.</p>
                     <h4>Key Responsibilities</h4>
                     <ul>
-                        <li>Developed a flight controller in C++, enabling horizontal and vertical translation as well as full attitude control.</li>
+                        <li>Developed a cascaded PID flight controller in C++, enabling horizontal and vertical translation as well as full attitude control.</li>
                         <li>Characterized the system and motors by conducting motor tests and creating curve fits for speed-to-force and PWM-to-speed relationships, enabling precise motor output control.</li>
                         <li>Implemented sensor fusion models, utilizing data from optical flow, IMU, and Time-of-Flight sensors to improve sensor data accuracy and provide precise feedback for control.</li>
                         <li>Diagnosed and corrected stability issues through targeted subsystem testing, sensor debugging, and controller tuning to validate fixes and improve system response.</li>
@@ -796,7 +799,7 @@
                 </div>
                 <div class="project-description">
                     <h4>Project Description</h4>
-                    <p>This project involved building a custom Model Predictive Control (MPC) framework for a two-wheeled differential drive robot. The controller was designed to track a predefined path while avoiding obstacles, accounting for system dynamics and real-world constraints. I developed both nonlinear and linearized control strategies and validated them through Python-based simulations.</p>
+                    <p>This project involved building a custom Model Predictive Control (MPC) framework for a two-wheeled differential drive robot using Pyomo. The controller was designed to track a predefined path while avoiding obstacles, accounting for system dynamics and real-world constraints. I developed both nonlinear and linearized control strategies and validated them through Python-based simulations.</p>
                     <h4>Key Responsibilities</h4>
                     <ul>
                         <li>Developed a hybrid control strategy by generating a reference trajectory offline using nonlinear MPC, then transitioning to a linearized MPC model during runtime to enhance computational efficiency.</li>
